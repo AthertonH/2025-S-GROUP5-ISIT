@@ -11,6 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ingrediscan.databinding.FragmentLoginBinding
 import androidx.navigation.fragment.findNavController
 import com.example.ingrediscan.R
+import android.util.Log
+import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.FirebaseAuth
+
 
 class LoginFragment : Fragment() {
 
@@ -18,17 +23,22 @@ class LoginFragment : Fragment() {
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var loginViewModel: LoginViewModel
+    private val TAG = "LoginFragment"
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val loginViewModel =
+         loginViewModel =
             ViewModelProvider(this).get(LoginViewModel::class.java)
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        auth = FirebaseAuth.getInstance()
 
         // login button
         binding.buttonLogin.setOnClickListener {
@@ -40,7 +50,8 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter username and password.", Toast.LENGTH_SHORT).show()
             } else { // successful login
                 // TO DO: back end
-                findNavController().navigate(R.id.login_to_home)
+                //findNavController().navigate(R.id.login_to_home)
+                loginViewModel.login(username, password)
             }
         }
 
@@ -49,7 +60,37 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.navigation_create_account)
         }
 
+        loginViewModel.currentUser.observe(viewLifecycleOwner, Observer { user ->
+            updateUI(user)
+        })
+
+        loginViewModel.errorMessage.observe(viewLifecycleOwner, Observer { message ->
+            if (!message.isNullOrEmpty()) {
+                Log.e(TAG, "Login error: $message")
+                Toast.makeText(context, "Login failed: $message", Toast.LENGTH_LONG).show()
+                Log.d(TAG, "No user signed in (or login failed, check error message)")
+            }
+        })
+
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null) {
+            Log.d(TAG, "User being signed-in from cached credentials/tokens")
+            updateUI(currentUser)
+        }
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        if (user != null) {
+            Log.d(TAG, "User signed in: ${user.email}")
+            Toast.makeText(context, "Login successful! User: ${user.email}", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.login_to_home)
+        }
     }
 
     override fun onDestroyView() {
