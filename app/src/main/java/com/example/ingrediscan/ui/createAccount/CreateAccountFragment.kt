@@ -75,9 +75,9 @@ class CreateAccountFragment : Fragment() {
         }
 
         // go back to login page if already have an account
-//        binding.Linksignin.setOnClickListener {
-//            findNavController().navigate(R.id.signup_to_login)
-//        }
+        binding.Linksignin.setOnClickListener {
+            findNavController().navigate(R.id.signup_to_login)
+        }
 
         // LiveData observation
         // .observe() allows us to "watch" the currentUser Livedata for any changes to its value,

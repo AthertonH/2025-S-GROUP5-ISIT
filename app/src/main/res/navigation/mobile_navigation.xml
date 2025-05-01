@@ -33,6 +33,10 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/signup_to_login"
+            app:destination="@id/navigation_login" />
     </fragment>
 
     <fragment
