@@ -127,7 +127,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                tools:text="@string/have_account"
+                android:text="@string/have_account"
                 android:gravity="center" />
 
             <TextView
@@ -141,7 +141,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="@font/satoshi_bold"
-                tools:text="@string/signin" />
+                android:text="@string/signin" />
             </LinearLayout>
     </LinearLayout>
 
