@@ -56,11 +56,10 @@
             android:hint="@string/username"
             android:inputType="text"
             android:paddingLeft="15dp"
-            android:paddingBottom="30dp"
-            android:textColor = "@color/black"
-            android:textColorHint="@color/black"/>
             android:paddingBottom="20dp"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textColor = "@color/black"
+            android:textColorHint="@color/black" />
 
 
         <EditText
@@ -76,11 +75,10 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingLeft="15dp"
-            android:paddingBottom="30dp"
-            android:textColor = "@color/black"
-            android:textColorHint="@color/black"/>
             android:paddingBottom="20dp"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textColor = "@color/black"
+            android:textColorHint="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
