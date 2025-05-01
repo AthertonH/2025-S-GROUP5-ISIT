@@ -115,7 +115,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.navigation_log_meal_by_search, bundle)
         }
 
-        val viewAllButton: View = binding.seeAll
+        val viewAllButton: View = binding.viewAll
         viewAllButton.setOnClickListener {
             findNavController().navigate(R.id.navigation_previous_results)
         }
