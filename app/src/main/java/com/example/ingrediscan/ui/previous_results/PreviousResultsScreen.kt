@@ -75,7 +75,7 @@ fun PreviousResultsScreen(viewModel: PreviousResultsViewModel = viewModel()) {
                 // dropdown menu for selecting a scanned item
                 Box {
                     TextButton(onClick = { expanded = true }) {
-                        Text(text = selectedItem?.name ?: "Select Scan", fontSize = 25.sp)
+                        Text(text = selectedItem?.name ?: "Select Scan", fontSize = 30.sp)
                     }
                     // Dropdown menu with all scanned items
                     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
@@ -178,9 +178,9 @@ private fun CalBox(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 // Each progress bar shows how much % of the macros is protein, carbs, or fat
-                NutrientProgressBar("PROTEIN", protein, proteinPercent, Color(0xFF4CAF50))
-                NutrientProgressBar("CARBS", carbs, carbPercent, Color(0xFF2196F3))
-                NutrientProgressBar("FAT", fat, fatPercent, Color(0xFFFF6F61))
+                NutrientProgressBar("PROTEIN", protein, proteinPercent, GradeGreen)
+                NutrientProgressBar("CARBS", carbs, carbPercent, GradeDarkBlue)
+                NutrientProgressBar("FAT", fat, fatPercent, GradeDarkRed)
             }
         }
     }
@@ -216,13 +216,13 @@ private fun BlueBox(
             Column(modifier = Modifier.width(200.dp)) {
                 Text(
                     text = name,
-                    fontSize = 30.sp,
+                    fontSize = 35.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = brand,
-                    fontSize = 20.sp,
+                    fontSize = 24.sp,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -283,7 +283,7 @@ private fun HistoryBox(items: List<ScannedItem>) {
             ) {
                 Text(
                     text = "Recent Meals",
-                    fontSize = 28.sp,
+                    fontSize = 30.sp,
                     color = Color.White,
                     modifier = Modifier.padding(5.dp)
                 )
@@ -299,63 +299,13 @@ private fun HistoryBox(items: List<ScannedItem>) {
                 items(items.size) { index ->
                     Text(
                         text = items[index].name,
-                        fontSize = 24.sp
+                        fontSize = 28.sp
                     )
                 }
             }
         }
     }
 }
-
-// ====== BUTTON FOR MANUAL ENTRY ======
-//@Composable
-//private fun ManualLog() {
-//    Box(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(80.dp)
-//            .clip(shape = RoundedCornerShape(10.dp))
-//            .background(DarkForegroundColor)
-//            .clickable { } // Dialog to enter manually
-//    ) {
-//        // Cutout circle for design
-//        Canvas(
-//            modifier = Modifier
-//                .align(Alignment.CenterEnd)
-//                .size(80.dp)
-//        ) {
-//            drawCircle(
-//                color = Color.DarkGray,
-//                radius = size.minDimension / 1f,
-//                center = Offset(size.width / 2, size.height / 2)
-//            )
-//        }
-//
-//        // Button content
-//        Row(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(start = 20.dp),
-//            verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.SpaceBetween
-//        ) {
-//            Text(
-//                text = "Enter Manually",
-//                fontSize = 30.sp,
-//                color = Color.White,
-//                fontWeight = FontWeight.Normal
-//            )
-//            Image(
-//                painter = painterResource(id = R.drawable.barpng),
-//                contentDescription = "Barcode Icon",
-//                colorFilter = ColorFilter.tint(Color.White),
-//                modifier = Modifier
-//                    .size(90.dp)
-//                    .padding(end = 25.dp)
-//            )
-//        }
-//    }
-//}
 
 // ====== CIRCULAR CALORIE METER ======
 @Composable
@@ -368,6 +318,7 @@ private fun CircleWithMeter(
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         Canvas(modifier = Modifier.matchParentSize()) {
             // Background circle
+            // To make the circle bar that tracks the calories amount
             drawCircle(
                 color = Color.LightGray,
                 radius = size.minDimension / 2,
@@ -393,6 +344,8 @@ private fun CircleWithMeter(
 }
 
 // ====== MACRONUTRIENT PROGRESS BAR ======
+// The calculations is now considering the grams and not the calories, so it will be more accurate
+// With respect to the grams only
 @Composable
 private fun NutrientProgressBar(
     label: String,
@@ -436,7 +389,7 @@ fun WavyCircleExample(text: String, fontSize: TextUnit = 60.sp) {
     // Calculate colors based on grade
     val (fillColor, borderColor) = gradeToColors(text)
     Box {
-        Canvas(modifier = Modifier.size(300.dp)) {
+        Canvas(modifier = Modifier.size(330.dp)) {
             val center = Offset(size.width / 2, size.height / 2)
             val baseRadius = size.minDimension / 2 * 0.8f
             val amplitude = 20f
@@ -475,7 +428,7 @@ fun WavyCircleExample(text: String, fontSize: TextUnit = 60.sp) {
 // Grading function for the colors of the grade
 private fun gradeToColors(grade: String): Pair<Color, Color> {
     val baseGrade = grade.trim().uppercase().firstOrNull()
-
+    // Each grade has a corresponding color for the wavy circle
     return when (baseGrade) {
         'A' -> Pair(GradeGreen, GradeDarkGreen)
         'B' -> Pair(GradeBlue, GradeDarkBlue)
