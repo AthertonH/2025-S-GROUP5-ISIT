@@ -33,10 +33,6 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/signup_to_login"
-            app:destination="@id/navigation_login" />
     </fragment>
 
     <fragment
@@ -67,14 +63,21 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.ingrediscan.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_login"
+            app:destination="@id/navigation_login"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_log_meal_by_search"
         android:name="com.example.ingrediscan.ui.logMealPage.LogMealBySearchFragment"
         android:label="Log Meal By Search"
         tools:layout="@layout/fragment_log_meal_by_search" />
-    
+
     <fragment
         android:id="@+id/search_detail_result"
         android:name="com.example.ingrediscan.ui.searchDetailPage.SearchDetailFragment"

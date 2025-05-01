@@ -12,8 +12,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.ingrediscan.R
 import com.example.ingrediscan.databinding.FragmentProfileBinding
 import com.example.ingrediscan.utils.*
+import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
 
@@ -162,6 +165,12 @@ class ProfileFragment : Fragment() {
                 }
                 .setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
                 .show()
+        }
+
+        // Logout button
+        binding.profileButtonLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.navigation_login)
         }
 
         // *** BMI Text ***
