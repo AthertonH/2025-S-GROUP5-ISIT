@@ -13,7 +13,6 @@
     <string name="calories_tracked_today">Calories Tracked Today</string>
     <string name="latest_food">Latest Food</string>
     <string name="food_item_1_200_cal">Food Item 1 - 200 cal</string>
-    <string name="food_item_2_300_cal">Food Item 2 - 300 cal</string>
     <string name="food_item_3_223_cal">Food Item 3 - 223 cal</string>
     <string name="food_item_4_400_cal">Food Item 4 - 400 cal</string>
     <string name="tutorial">Tutorial</string>
@@ -46,4 +45,12 @@
     <string name="have_account">Already have an account?</string>
     <string name="signin">Sign in</string>
     <string name="Email">Email</string>
+
+    <string name="weight_label">Weight: %1$d lbs</string>
+    <string name="height_label">Height: %1$d\'%2$d"</string>
+    <string name="age_label">Age: %1$d years</string>
+    <string name="sex_label">Sex: %1$s</string>
+    <string name="activity_level_label">Activity Level: %1$s</string>
+    <string name="bmi_label">BMI: %1$.1f</string>
+
 </resources>
