@@ -27,6 +27,15 @@ class LoginViewModel : ViewModel() {
         private const val TAG = "LoginViewModel"
     }
 
+    /**
+     * Log in with the provided email and password.
+     * This method uses Firebase's signInWithEmailAndPassword method to log in a user.
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @return A LiveData object representing the result of the login operation.
+     *
+     * @Source https://firebase.google.com/docs/auth/android/password-auth
+     */
     fun login(email: String, password: String) {
         _username.value = email
         _password.value = password
