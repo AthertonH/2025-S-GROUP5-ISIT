@@ -3,76 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/profileBanner"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/profile_banner"
-            android:scaleType="centerCrop"
-            android:src="@drawable/banner"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
 
-        <ImageButton
-            android:id="@+id/profileButtonImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/profile_image"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_profile_black"
-            app:layout_constraintBottom_toTopOf="@+id/profileButtonWeight"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/profileButtonWeight"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="164dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_weight"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/profileButtonHeight"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileButtonWeight" />
-
-        <Button
-            android:id="@+id/profileButtonAge"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_age"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileButtonHeight" />
-
-        <Button
-            android:id="@+id/profileButtonSex"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_sex"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileButtonAge" />
+    <ImageView
+        android:id="@+id/profileBanner"
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/profile_banner"
+        android:scaleType="centerCrop"
+        android:src="@drawable/banner"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageButton
         android:id="@+id/profileButtonImage"
@@ -93,10 +36,9 @@
         android:layout_marginTop="164dp"
         android:gravity="start|center_vertical"
         android:text="@string/profile_weight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/profileButtonHeight"
@@ -105,9 +47,9 @@
         android:layout_marginTop="6dp"
         android:gravity="start|center_vertical"
         android:text="@string/profile_height"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileButtonWeight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButtonWeight" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/profileButtonAge"
@@ -116,9 +58,9 @@
         android:layout_marginTop="6dp"
         android:gravity="start|center_vertical"
         android:text="@string/profile_age"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileButtonHeight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButtonHeight" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/profileButtonSex"
@@ -127,10 +69,9 @@
         android:layout_marginTop="6dp"
         android:gravity="start|center_vertical"
         android:text="@string/profile_sex"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileButtonAge"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButtonAge" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/profileButtonActivityLevel"
@@ -139,90 +80,53 @@
         android:layout_marginTop="4dp"
         android:gravity="start|center_vertical"
         android:text="@string/profile_activity_level"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintTop_toBottomOf="@id/profileButtonSex"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButtonSex" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bmiBox"
-        android:layout_width="411dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/cornered_box_background"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileButtonActivityLevel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileButtonActivityLevel">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/profileButtonActivityLevel"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="4dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_activity_level"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileButtonSex" />
+        <TextView
+            android:id="@+id/bmiText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_BMI"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bmiBox"
-            android:layout_width="411dp"
+        <TextView
+            android:id="@+id/caloricSuggestionTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/cornered_box_background"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileButtonActivityLevel">
+            android:text="@string/profile_suggested_calories"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/bmiText"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/bmiText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/profile_BMI"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/caloricSuggestionTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/profile_suggested_calories"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bmiText" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            android:id="@+id/profileButtonPassword"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:gravity="start|center_vertical"
-            android:text="@string/profile_change_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bmiBox" />
     <Button
         android:id="@+id/profileButtonPassword"
         android:layout_width="360dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:gravity="start|center_vertical"
-        android:text="@string/profile_change_password"
         android:fontFamily="@font/fugazone_regular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintTop_toBottomOf="@id/bmiBox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bmiBox" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

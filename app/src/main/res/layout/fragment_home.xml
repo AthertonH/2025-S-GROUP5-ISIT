@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ingrediscan"
-                android:textSize="28sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50"
                 android:layout_gravity="center"
@@ -85,7 +85,7 @@
                     android:text="@{String.valueOf(viewModel.caloriesTracked)}"
                     android:textColor="#F17615"
                     android:textSize="36sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/satoshi_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -144,7 +144,7 @@
                             android:text="@string/latest_food"
                             android:textColor="#FFFFFF"
                             android:textSize="20sp"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/satoshi_bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.505"
                             app:layout_constraintStart_toStartOf="parent"
@@ -203,8 +203,7 @@
                             android:text="@string/SeeAll_underlined"
                             android:fontFamily="@font/fugazone_regular"
                             android:textColor="#FFFFFF"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
+                            android:textSize="11sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/foodItem4"/>
 
@@ -289,7 +288,7 @@
                     android:text="@string/log_a_meal_for_breakfast"
                     android:textColor="#000000"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:fontFamily="@font/satoshi_bold" />
 
                 <Button
                     android:id="@+id/Breakfast_Add_Button"
@@ -317,7 +316,7 @@
                     android:text="@string/log_a_meal_for_lunch"
                     android:textColor="#000000"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/satoshi_bold" />
 
                 <Button
                     android:id="@+id/Lunch_Add_Button"
@@ -345,7 +344,7 @@
                     android:text="@string/log_a_meal_for_dinner"
                     android:textColor="#000000"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/satoshi_bold" />
 
                 <Button
                     android:id="@+id/Dinner_Add_Button"
@@ -373,7 +372,7 @@
                     android:text="@string/log_a_meal_for_snack"
                     android:textColor="#000000"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/satoshi_bold" />
 
                 <Button
                     android:id="@+id/Snack_Add_Button"
