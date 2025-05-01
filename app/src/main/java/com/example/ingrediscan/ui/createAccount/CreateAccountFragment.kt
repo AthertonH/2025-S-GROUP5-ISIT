@@ -72,11 +72,13 @@ class CreateAccountFragment : Fragment() {
                 Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
             }
 
+        }
+
         // go back to login page if already have an account
         binding.Linksignin.setOnClickListener {
             findNavController().navigate(R.id.signup_to_login)
         }
-        
+
         // LiveData observation
         // .observe() allows us to "watch" the currentUser Livedata for any changes to its value,
         // When the value of currentUser changes, the code inside the observe() method will run.
