@@ -12,8 +12,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.ingrediscan.R
 import com.example.ingrediscan.databinding.FragmentProfileBinding
 import com.example.ingrediscan.utils.*
+import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
 
@@ -48,10 +51,10 @@ class ProfileFragment : Fragment() {
 
         // *** Weight Button ***
         profileViewModel.weight.observe(viewLifecycleOwner) { newWeight ->
-            weightButton.text = "Weight: $newWeight lbs"
+            weightButton.text = getString(R.string.weight_label, newWeight)
         }
         weightButton.setOnClickListener {
-            showNumberPickerDialog("Enter Weight", 50, 500) { weight ->
+            showNumberPickerDialog("Enter Weight", 100, 500) { weight ->
                 profileViewModel.setWeight(weight)
                 profileViewModel.updateBMI()
                 profileViewModel.updateCalorieGoals()
@@ -61,7 +64,7 @@ class ProfileFragment : Fragment() {
         // *** Height Button ***
         profileViewModel.heightFeet.observe(viewLifecycleOwner) { feet ->
             profileViewModel.heightInches.observe(viewLifecycleOwner) { inches ->
-                heightButton.text = "Height: ${feet}'${inches}\""
+                heightButton.text = getString(R.string.height_label, feet, inches)
             }
         }
         heightButton.setOnClickListener {
@@ -74,10 +77,10 @@ class ProfileFragment : Fragment() {
 
         // *** Age Button ***
         profileViewModel.age.observe(viewLifecycleOwner) { newAge ->
-            ageButton.text = "Age: $newAge years"
+            ageButton.text = getString(R.string.age_label, newAge)
         }
         ageButton.setOnClickListener {
-            showNumberPickerDialog("Select Age", 13, 110) { age ->
+            showNumberPickerDialog("Select Age", 18, 100) { age ->
                 profileViewModel.setAge(age)
                 profileViewModel.updateCalorieGoals()
             }
@@ -85,7 +88,7 @@ class ProfileFragment : Fragment() {
 
         // *** Sex Button ***
         profileViewModel.sex.observe(viewLifecycleOwner) { newSex ->
-            sexButton.text = "Sex: $newSex"
+            sexButton.text = getString(R.string.sex_label, newSex)
         }
         sexButton.setOnClickListener {
             showChoiceDialog("Select Sex", listOf("Male", "Female")) { selectedSex ->
@@ -96,7 +99,7 @@ class ProfileFragment : Fragment() {
 
         // *** Activity Level Button ***
         profileViewModel.activityLevel.observe(viewLifecycleOwner) { newActivityLevel ->
-            activityLevelButton.text = "Activity Level: $newActivityLevel"
+            activityLevelButton.text = getString(R.string.activity_level_label, newActivityLevel)
         }
         activityLevelButton.setOnClickListener {
             val levels = listOf("Sedentary", "Lightly Active", "Moderately Active", "Active", "Very Active")
@@ -164,9 +167,15 @@ class ProfileFragment : Fragment() {
                 .show()
         }
 
+        // Logout button
+        binding.profileButtonLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.navigation_login)
+        }
+
         // *** BMI Text ***
         profileViewModel.bmi.observe(viewLifecycleOwner) { bmi ->
-            binding.bmiText.text = "BMI: $bmi"
+            binding.bmiText.text = getString(R.string.bmi_label, bmi)
         }
 
         // *** Calorie Suggestions ***
