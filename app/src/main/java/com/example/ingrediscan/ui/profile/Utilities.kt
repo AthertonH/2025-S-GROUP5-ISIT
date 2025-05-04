@@ -18,10 +18,13 @@ data class CalorieGoals(
     val maintain: Int,
     val mildLoss: Int,
     val loss: Int,
-    val extremeLoss: Int
+    val extremeLoss: Int,
+    val mildGain: Int,
+    val gain: Int,
+    val extremeGain: Int
 )
 
-// Reusable number picker. Used for Weight and Age
+// Reusable number picker. Used for Age
 fun Fragment.showNumberPickerDialog(
     title: String,
     minValue: Int,  // Minimum value for the picker
@@ -95,6 +98,50 @@ fun Fragment.showHeightPickerDialog(
         .show()
 }
 
+// Function for "Weight" button - Returns 3 Integers (100s, 10s, 1s)
+fun Fragment.showWeightPickerDialog(
+    onWeightSelected: (weight: Int) -> Unit
+) {
+    val layout = LinearLayout(requireContext()).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = Gravity.CENTER
+    }
+
+    val hundredsPicker = NumberPicker(requireContext()).apply {
+        minValue = 0
+        maxValue = 9
+        wrapSelectorWheel = false
+    }
+
+    val tensPicker = NumberPicker(requireContext()).apply {
+        minValue = 0
+        maxValue = 9
+        wrapSelectorWheel = false
+    }
+
+    val onesPicker = NumberPicker(requireContext()).apply {
+        minValue = 0
+        maxValue = 9
+        wrapSelectorWheel = false
+    }
+
+    layout.addView(hundredsPicker)
+    layout.addView(tensPicker)
+    layout.addView(onesPicker)
+
+    AlertDialog.Builder(requireContext())
+        .setTitle("Select Weight (lbs)")
+        .setView(layout)
+        .setPositiveButton("OK") { _, _ ->
+            val weight = hundredsPicker.value * 100 +
+                    tensPicker.value * 10 +
+                    onesPicker.value
+            onWeightSelected(weight)
+        }
+        .setNegativeButton("Cancel", null)
+        .show()
+}
+
 // Reusable choice dialog, used in Sex and Activity
 fun Fragment.showChoiceDialog(
     title: String,
@@ -150,11 +197,24 @@ fun calculateCalorieGoals(
     }
 
     val maintain = (bmr * activityMultiplier).toInt()
+
     val mildLoss = (maintain - 250).coerceAtLeast(1200)
     val loss = (maintain - 500).coerceAtLeast(1200)
     val extremeLoss = (maintain - 1000).coerceAtLeast(1200)
 
-    return CalorieGoals(maintain, mildLoss, loss, extremeLoss)
+    val mildGain = maintain + 250
+    val gain = maintain + 500
+    val extremeGain = maintain + 1000
+
+    return CalorieGoals(
+        maintain,
+        mildLoss,
+        loss,
+        extremeLoss,
+        mildGain,
+        gain,
+        extremeGain
+    )
 }
 
 // Function to set profile picture in profile page
